@@ -1,0 +1,217 @@
+$path: '/fonts/';
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Bold.eot');
+    src: local('TT Norms Bold'), local('TTNorms-Bold'),
+        url($path + 'TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Bold.woff2') format('woff2'),
+        url($path + 'TTNorms-Bold.woff') format('woff'),
+        url($path + 'TTNorms-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-ThinItalic.eot');
+    src: local('TT Norms Thin Italic'), local('TTNorms-ThinItalic'),
+        url($path + 'TTNorms-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-ThinItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-ThinItalic.woff') format('woff'),
+        url($path + 'TTNorms-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Thin.eot');
+    src: local('TT Norms Thin'), local('TTNorms-Thin'),
+        url($path + 'TTNorms-Thin.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Thin.woff2') format('woff2'),
+        url($path + 'TTNorms-Thin.woff') format('woff'),
+        url($path + 'TTNorms-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-LightItalic.eot');
+    src: local('TT Norms Light Italic'), local('TTNorms-LightItalic'),
+        url($path + 'TTNorms-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-LightItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-LightItalic.woff') format('woff'),
+        url($path + 'TTNorms-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-ExtraBoldItalic.eot');
+    src: local('TT Norms ExtraBold Italic'), local('TTNorms-ExtraBoldItalic'),
+        url($path + 'TTNorms-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-ExtraBoldItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-ExtraBoldItalic.woff') format('woff'),
+        url($path + 'TTNorms-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Italic.eot');
+    src: local('TT Norms Italic'), local('TTNorms-Italic'),
+        url($path + 'TTNorms-Italic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Italic.woff2') format('woff2'),
+        url($path + 'TTNorms-Italic.woff') format('woff'),
+        url($path + 'TTNorms-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-ExtraLight.eot');
+    src: local('TT Norms ExtraLight'), local('TTNorms-ExtraLight'),
+        url($path + 'TTNorms-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-ExtraLight.woff2') format('woff2'),
+        url($path + 'TTNorms-ExtraLight.woff') format('woff'),
+        url($path + 'TTNorms-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-HeavyItalic.eot');
+    src: local('TT Norms Heavy Italic'), local('TTNorms-HeavyItalic'),
+        url($path + 'TTNorms-HeavyItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-HeavyItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-HeavyItalic.woff') format('woff'),
+        url($path + 'TTNorms-HeavyItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-MediumItalic.eot');
+    src: local('TT Norms Medium Italic'), local('TTNorms-MediumItalic'),
+        url($path + 'TTNorms-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-MediumItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-MediumItalic.woff') format('woff'),
+        url($path + 'TTNorms-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-BoldItalic.eot');
+    src: local('TT Norms Bold Italic'), local('TTNorms-BoldItalic'),
+        url($path + 'TTNorms-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-BoldItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-BoldItalic.woff') format('woff'),
+        url($path + 'TTNorms-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Heavy.eot');
+    src: local('TT Norms Heavy'), local('TTNorms-Heavy'),
+        url($path + 'TTNorms-Heavy.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Heavy.woff2') format('woff2'),
+        url($path + 'TTNorms-Heavy.woff') format('woff'),
+        url($path + 'TTNorms-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Light.eot');
+    src: local('TT Norms Light'), local('TTNorms-Light'),
+        url($path + 'TTNorms-Light.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Light.woff2') format('woff2'),
+        url($path + 'TTNorms-Light.woff') format('woff'),
+        url($path + 'TTNorms-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Medium.eot');
+    src: local('TT Norms Medium'), local('TTNorms-Medium'),
+        url($path + 'TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Medium.woff2') format('woff2'),
+        url($path + 'TTNorms-Medium.woff') format('woff'),
+        url($path + 'TTNorms-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-ExtraBold.eot');
+    src: local('TT Norms ExtraBold'), local('TTNorms-ExtraBold'),
+        url($path + 'TTNorms-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-ExtraBold.woff2') format('woff2'),
+        url($path + 'TTNorms-ExtraBold.woff') format('woff'),
+        url($path + 'TTNorms-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-ExtraLightItalic.eot');
+    src: local('TT Norms ExtraLight Italic'), local('TTNorms-ExtraLightItalic'),
+        url($path + 'TTNorms-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-ExtraLightItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-ExtraLightItalic.woff') format('woff'),
+        url($path + 'TTNorms-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Regular.eot');
+    src: local('TT Norms Regular'), local('TTNorms-Regular'),
+        url($path + 'TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Regular.woff2') format('woff2'),
+        url($path + 'TTNorms-Regular.woff') format('woff'),
+        url($path + 'TTNorms-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-BlackItalic.eot');
+    src: local('TT Norms Black Italic'), local('TTNorms-BlackItalic'),
+        url($path + 'TTNorms-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-BlackItalic.woff2') format('woff2'),
+        url($path + 'TTNorms-BlackItalic.woff') format('woff'),
+        url($path + 'TTNorms-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url($path + 'TTNorms-Black.eot');
+    src: local('TT Norms Black'), local('TTNorms-Black'),
+        url($path + 'TTNorms-Black.eot?#iefix') format('embedded-opentype'),
+        url($path + 'TTNorms-Black.woff2') format('woff2'),
+        url($path + 'TTNorms-Black.woff') format('woff'),
+        url($path + 'TTNorms-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
