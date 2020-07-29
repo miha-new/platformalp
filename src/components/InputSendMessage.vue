@@ -9,6 +9,7 @@
       :value="value"
       :disabled="sending"
       @input="inputMessage"
+      @keydown.enter="sendMessage"
     />
     <button
       class="btn-send"
@@ -30,26 +31,26 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      value: {
-        type: String,
-        required: true
-      },
-      sending: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  props: {
+    value: {
+      type: String,
+      required: true,
     },
-    methods: {
-      inputMessage({target}) {
-        this.$emit('input', target.value)
-      },
-      sendMessage() {
-        this.$emit('send')
-      }
-    }
-  }
+    sending: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    inputMessage({ target }) {
+      this.$emit('input', target.value);
+    },
+    sendMessage() {
+      this.$emit('send');
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -76,7 +77,8 @@
         color: #7D8790;
       }
       &:disabled {
-        pointer-events: none
+        pointer-events: none;
+        background-color: #F3F6F8;
       }
     }
     .btn-send {

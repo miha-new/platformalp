@@ -1,71 +1,76 @@
 <template>
   <div
     class="discussions"
-    :class="{open}"
+    :class="{open: open || $route.name === 'home'}"
   >
-    <div class="discussions-head">
-      <div class="discussion-title">
-        Все переписки
-        <span class="title-count">
-          {{value.length}}
-        </span>
-      </div>
-      <button
-        class="btn-nav"
-        @click="open = !open"
-      >
-        <div class="icon-nav">
-          <span></span>
+    <template
+      v-if="value.length"
+    >
+      <div class="discussions-head">
+        <div class="discussion-title">
+          Все переписки
+          <span class="title-count">
+            {{value.length}}
+          </span>
         </div>
-      </button>
-    </div>
-    <div class="discussions-body">
-      <div
-        class="discussion-nav"
-        @click="open = false"
-      >
-        <router-link
-          v-for="item in value"
-          :key="item.id"
-          :to="`/${item.id}`"
-          class="discussion-link"
+        <button
+          v-if="$route.name !== 'home'"
+          class="btn-nav"
+          @click="open = !open"
         >
-          <div class="link-head">
-            <div class="link-subject">
-              {{item.subject}}
-            </div>
-            <div class="link-created">
-              {{dateFormat(item.created, 'YYYY-MM-DD HH:mm', 'D MMMM YYYY')}}
-            </div>
+          <div class="icon-nav">
+            <span></span>
           </div>
-          <div class="link-body">
-            <div class="link-text">
-              {{item.parts[0].text}}
-            </div>
-          </div>
-        </router-link>
+        </button>
       </div>
-    </div>
+      <div class="discussions-body">
+        <div
+          class="discussion-nav"
+          @click="open = false"
+        >
+          <router-link
+            v-for="item in value"
+            :key="item.id"
+            :to="`/${item.id}`"
+            class="discussion-link"
+          >
+            <div class="link-head">
+              <div class="link-subject">
+                {{item.subject}}
+              </div>
+              <div class="link-created">
+                {{dateFormat(item.created, 'YYYY-MM-DD HH:mm', 'D MMMM YYYY')}}
+              </div>
+            </div>
+            <div class="link-body">
+              <div class="link-text">
+                {{item.parts[0].text}}
+              </div>
+            </div>
+          </router-link>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      value: {
-        type: Array,
-        required: true
-      }
+export default {
+  props: {
+    value: {
+      type: Array,
+      required: true,
     },
-    data: () => ({
-      open: false
-    }),
-    methods: {
-      dateFormat(value, from, to) {
-        return this.$moment(value, from).format(to)
-      }
-    }
-  }
+  },
+  data: () => ({
+    open: false,
+  }),
+  methods: {
+    dateFormat(value, from, to) {
+      return this.$moment(value, from).format(to);
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -80,9 +85,210 @@
     background-color: #F3F6F8;
     overflow: hidden;
     transition: .15s ease-in-out;
+    &:empty {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 300;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(
+                          to bottom,
+                          rgba(255, 255, 255, .1) 0% 100%
+                        ),
+                        linear-gradient(
+                          to bottom,
+                          #656B77 0% 100%
+                        ),
+                        linear-gradient(
+                          to bottom,
+                          rgba(255, 255, 255, .1) 0% 100%
+                        ),
+                        linear-gradient(
+                          to bottom,
+                          #D2D8DE 0% 100%
+                        ),
+                        linear-gradient(
+                          to bottom,
+                          #E9EDF2 0% 100%
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 18px,
+                          rgba(255, 255, 255, .1) 18px 32px,
+                          transparent 32px 70px
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 18px,
+                          #35383D 18px 32px,
+                          transparent 32px 70px
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 18px,
+                          rgba(255, 255, 255, .1) 18px 32px,
+                          transparent 32px 70px
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 18px,
+                          #B7C0C8 18px 32px,
+                          transparent 32px 70px
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 38px,
+                          rgba(255, 255, 255, .1) 38px 52px,
+                          transparent 52px 70px
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 38px,
+                          #7D8790 38px 52px,
+                          transparent 52px 70px
+                        ),
+                        repeating-linear-gradient(
+                          to bottom,
+                          transparent 0px 69px,
+                          #E9EDF2 69px 70px
+                        );
+      background-size: 0px 14px,
+                       100px 14px,
+                       0px 14px,
+                       14px 14px,
+                       100% 1px,
+                       0px 140px,
+                       calc(100% - 137px) 140px,
+                       0px 140px,
+                       87px 140px,
+                       0px 140px,
+                       calc(100% - 40px) 140px,
+                       100% 140px;
+      background-position: 20px 18px,
+                           20px 18px,
+                           130px 18px,
+                           130px 18px,
+                           0px 49px,
+                           20px 50px,
+                           20px 50px,
+                           calc(100% - 107px) 50px,
+                           calc(100% - 20px) 50px,
+                           20px 50px,
+                           20px 50px,
+                           0px 50px;
+      animation: loading 2s linear infinite;
+    }
+    @keyframes loading {
+      0% {
+        background-size: 0px 14px,
+                         100px 14px,
+                         0px 14px,
+                         14px 14px,
+                         100% 1px,
+                         0px 140px,
+                         calc(100% - 137px) 140px,
+                         0px 140px,
+                         87px 140px,
+                         0px 140px,
+                         calc(100% - 40px) 140px,
+                         100% 140px;
+        background-position: 20px 18px,
+                             20px 18px,
+                             130px 18px,
+                             130px 18px,
+                             20px 49px,
+                             20px 50px,
+                             20px 50px,
+                             calc(100% - 107px) 50px,
+                             calc(100% - 20px) 50px,
+                             20px 50px,
+                             20px 50px,
+                             0px 50px;
+      }
+      45% {
+        background-size: 100px 14px,
+                         100px 14px,
+                         14px 14px,
+                         14px 14px,
+                         100% 1px,
+                         calc(100% - 137px) 140px,
+                         calc(100% - 137px) 140px,
+                         87px 140px,
+                         87px 140px,
+                         calc(100% - 40px) 140px,
+                         calc(100% - 40px) 140px,
+                         100% 140px;
+        background-position: 20px 18px,
+                             20px 18px,
+                             130px 18px,
+                             130px 18px,
+                             0px 49px,
+                             20px 50px,
+                             20px 50px,
+                             calc(100% - 20px) 50px,
+                             calc(100% - 20px) 50px,
+                             20px 50px,
+                             20px 50px,
+                             0px 50px;
+      }
+      55% {
+        background-size: 100px 14px,
+                         100px 14px,
+                         14px 14px,
+                         14px 14px,
+                         100% 1px,
+                         calc(100% - 137px) 140px,
+                         calc(100% - 137px) 140px,
+                         87px 140px,
+                         87px 140px,
+                         calc(100% - 40px) 140px,
+                         calc(100% - 40px) 140px,
+                         100% 140px;
+        background-position: 20px 18px,
+                             20px 18px,
+                             130px 18px,
+                             130px 18px,
+                             0px 49px,
+                             calc(100% - 117px) 50px,
+                             20px 50px,
+                             calc(100% - 20px) 50px,
+                             calc(100% - 20px) 50px,
+                             calc(100% - 20px) 50px,
+                             20px 50px,
+                             0px 50px;
+      }
+      100% {
+        background-size: 0px 14px,
+                         100px 14px,
+                         0px 14px,
+                         14px 14px,
+                         100% 1px,
+                         0px 140px,
+                         calc(100% - 137px) 140px,
+                         0px 140px,
+                         87px 140px,
+                         0px 140px,
+                         calc(100% - 40px) 140px,
+                         100% 140px;
+        background-position:  120px 18px,
+                             20px 18px,
+                             144px 18px,
+                             130px 18px,
+                             0px 49px,
+                             calc(100% - 117px) 50px,
+                             20px 50px,
+                             calc(100% - 20px) 50px,
+                             calc(100% - 20px) 50px,
+                             calc(100% - 20px) 50px,
+                             20px 50px,
+                             0px 50px;
+      }
+    }
     &.open {
       height: 100%;
-      max-height: 1200px;
+      max-height: 2000px;
       .icon-nav {
         &::before {
           transform: rotate(45deg);
@@ -111,7 +317,7 @@
       background-color: #F3F6F8;
       border-top: 1px solid transparent;
       border-bottom: 1px solid #E9EDF2;
-      transition: .15s ease-in-out; 
+      transition: .15s ease-in-out;
     }
     .discussions-body {
       position: relative;

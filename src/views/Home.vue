@@ -13,7 +13,7 @@
         />
         <InputSendMessage
           v-model="message"
-          :sending="sendingMessage"
+          :sending="sending"
           @send="handlerSendMessage"
         />
       </template>
@@ -27,70 +27,83 @@
 </template>
 
 <script>
-  import {mapState, mapActions} from 'vuex'
-  import Discussions from '@/components/Discussions'
-  import MessageList from '@/components/MessageList'
-  import InputSendMessage from '@/components/InputSendMessage'
+import { mapState, mapActions } from 'vuex';
+import Discussions from '@/components/Discussions.vue';
+import MessageList from '@/components/MessageList.vue';
+import InputSendMessage from '@/components/InputSendMessage.vue';
 
-  export default {
-    props: ['discussionId'],
-    components: {
-      Discussions,
-      MessageList,
-      InputSendMessage
-    },
-    data: () => ({
-      message: ''
-    }),
-    computed: {
-      ...mapState([
-        'discussions',
-        'messages',
-        'sendingMessage'
-      ]),
-    },
-    created() {
-      this.getDiscussions()
-      if (this.discussionId) {
-        this.getMessages(this.discussionId)
+export default {
+  props: ['id'],
+  components: {
+    Discussions,
+    MessageList,
+    InputSendMessage,
+  },
+  data: () => ({
+    message: '',
+    sending: false,
+  }),
+  computed: {
+    ...mapState([
+      'discussions',
+      'messages',
+    ]),
+    discussionId() {
+      const value = this.id * 1;
+      if (!Number.isNaN(value)) {
+        return value;
       }
+      return undefined;
     },
-    watch: {
-      $route(to, from) {
-        const isSimilarPath = to.path == from.path
-        if (this.discussionId && !isSimilarPath) {
-          this.getMessages(this.discussionId)
-        }
-      }
-    },
-    methods: {
-      ...mapActions([
-        'getDiscussions',
-        'getMessages',
-        'sendMessage'
-      ]),
-      handlerSendMessage() {
-        if (this.message.trim()) {
-          const params = {
-            discussionId: this.discussionId,
-            message: {
-              author: 'support',
-              created: this.$moment().format('YYYY-MM-DD HH:mm'),
-              text: this.message
-            }
-          }
-          this.sendMessage(params)
-          this.message = ''
-          location.hash = ''
-        }
-      }
+  },
+  created() {
+    this.getDiscussions();
+    if (this.discussionId !== undefined) {
+      this.getMessages(this.discussionId);
     }
-  }
+  },
+  watch: {
+    $route(to, from) {
+      const isSimilarPath = to.path === from.path;
+      if (this.discussionId && !isSimilarPath) {
+        this.getMessages(this.discussionId);
+      }
+    },
+  },
+  methods: {
+    ...mapActions([
+      'getDiscussions',
+      'getMessages',
+      'sendMessage',
+    ]),
+    async handlerSendMessage() {
+      this.message = this.message.trim();
+      if (this.message) {
+        const params = {
+          discussionId: this.discussionId,
+          message: {
+            author: 'Служба техподдержки',
+            created: this.$moment().format('YYYY-MM-DD HH:mm'),
+            text: this.message,
+          },
+        };
+        this.sending = true;
+        this.sending = await this.sendMessage(params);
+        if (!this.sending) {
+          this.message = '';
+          if (this.$route.hash) {
+            this.$router.push({ name: 'discussion', hash: '' });
+          }
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
   .page {
-    height: 100%;
+    height: 100vh;
    .conversation {
       position: relative;
       z-index: 100;

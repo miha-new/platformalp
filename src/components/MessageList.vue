@@ -3,9 +3,12 @@
     <div
       v-for="item in value"
       :key="item.id"
-      :id="`msg-${item.id}`"
+      :id="anchorName(item.id)"
       class="message"
-      :class="{user: isUser(item.author)}"
+      :class="{
+        anchor: isAnchor(item.id),
+        user: isUser(item.author)
+      }"
     >
       <div class="message-body">
         <div class="message-text">
@@ -25,64 +28,81 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      value: {
-        type: Array,
-        required: true
-      },
-      scrollTo: {
-        type: String
+export default {
+  props: {
+    value: {
+      type: Array,
+      required: true,
+    },
+    scrollTo: {
+      type: String,
+    },
+  },
+  computed: {
+    scrollToFinal() {
+      if (this.value.length) {
+        return `msg-${this.value[this.value.length - 1].id}`;
+      }
+      return undefined;
+    },
+  },
+  watch: {
+    value() {
+      this.goToMessage();
+    },
+    scrollTo() {
+      if (this.value.length) {
+        this.goToMessage();
       }
     },
-    computed: {
-      scrollToFinal() {
-        if (this.value.length) {
-          return `msg-${this.value[this.value.length - 1].id}`
+  },
+  mounted() {
+    this.goToMessage();
+  },
+  methods: {
+    anchorName(id) {
+      return `msg-${id}`;
+    },
+    isAnchor(id) {
+      if (this.scrollTo) {
+        return this.scrollTo === this.anchorName(id);
+      }
+      return undefined;
+    },
+    isUser(author) {
+      return this.value[0].author === author;
+    },
+    goToMessage() {
+      this.$nextTick(() => {
+        const id = this.scrollTo ? this.scrollTo : this.scrollToFinal;
+        const elem = document.getElementById(id);
+        if (elem) {
+          elem.scrollIntoView();
         }
-        return undefined
-      }
+      });
     },
-    watch: {
-      value() {
-        this.goToMessage()
-      },
-      scrollTo() {
-        if (this.value.length) {
-          this.goToMessage()
-        }
-      }
+    dateFormat(value, from, to) {
+      return this.$moment(value, from).format(to);
     },
-    mounted() {
-      this.goToMessage()
-    },
-    methods: {
-      isUser(author) {
-        return this.value[0].author == author
-      },
-      goToMessage() {
-        this.$nextTick(() => {
-          const id = this.scrollTo && this.scrollTo !== '#' ? this.scrollTo : this.scrollToFinal
-          const elem = document.getElementById(id)
-          if (elem) {
-            elem.scrollIntoView()
-          }
-        })
-      },
-      dateFormat(value, from, to) {
-        return this.$moment(value, from).format(to)
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style scoped lang="scss">
   .message-list {
     width: 100%;
-    padding: 5px 20px;
+    padding: 0 20px;
+    margin: 5px 0;
     background-color: #FFF;
     .message {
-      margin: 15px 0;
+      padding-top: 65px;
+      padding-bottom: 15px;
+      margin-top: -50px;
+      &.anchor {
+        .message-text {
+          box-shadow: 0 0 10px #398BFF;
+        }
+      }
       &.user {
         margin-left: auto;
         text-align: right;
@@ -134,10 +154,12 @@
   }
   @media (min-width: 1200px) {
     .message-list {
-      padding: 10px 30px;
+      padding: 0 30px;
+      margin: 10px 0;
       .message {
         max-width: 60%;
-        margin: 20px 0;
+        padding-top: 15px;
+        margin-top: 0;
       }
       .message-text {
         padding: 15px 20px;
